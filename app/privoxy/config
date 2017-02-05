@@ -1,18 +1,6 @@
 confdir /app/privoxy
-logdir /var/log
-logfile privoxy
-
-# permit-access  localhost
-# permit-access 172.16.0.0/24
-# permit-access  192.168.1.0/24
 
 listen-address  0.0.0.0:8080
 
-buffer-limit 4096
-split-large-forms 0
-keep-alive-timeout 300
-socket-timeout 300
-
 debug   1    # show each GET/POST/CONNECT request
 debug   4096 # Startup banner and warnings
-debug   8192 # Errors - *we highly recommended enabling this*
