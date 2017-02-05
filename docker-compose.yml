@@ -1,0 +1,23 @@
+version: '2'
+services:
+  ovpn_proxy:
+    container_name: ovpn_proxy
+    build: .
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    dns:
+      # PIA DNS
+      - 209.222.18.218
+      - 209.222.18.222
+    networks:
+      - ovpn_proxy
+    ports:
+      - 8080:8080
+    volumes: 
+      - /etc/localtime:/etc/caltime:ro
+    restart: always
+
+networks:
+  ovpn_proxy:

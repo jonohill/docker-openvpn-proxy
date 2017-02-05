@@ -1,0 +1,5 @@
+#!/bin/sh
+openvpn --config /app/ovpn/pia-uk-london.ovpn
+
+#
+#openvpn [$OPTIONS] --config /app/ovpn/pia-uk-london.ovpn
