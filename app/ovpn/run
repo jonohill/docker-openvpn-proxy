@@ -1,5 +1,23 @@
 #!/bin/sh
-openvpn --config /app/ovpn/pia-uk-london.ovpn
 
-#
-#openvpn [$OPTIONS] --config /app/ovpn/pia-uk-london.ovpn
+# Test ovpn config
+OVPN_FILE="/app/ovpn/config/${OPENVPN_FILE_SUBPATH}"
+
+if [ ! -f "$OVPN_FILE" ] ; then
+    echo "No OpenVPN config. Exiting."
+    exit 1
+fi
+
+# Add ovpn user/pass
+if [ "${OPENVPN_USERNAME}" = "null" ] || [ "${OPENVPN_PASSWORD}" = "null" ] ; then
+    echo "OpenVPN credentials not set. Exiting."
+    exit 1
+else
+    echo "Setting OpenVPN credentials..."
+    mkdir -p /app-config
+    echo $OPENVPN_USERNAME > /app-config/openvpn-credentials.txt
+    echo $OPENVPN_PASSWORD >> /app-config/openvpn-credentials.txt
+    chmod 600 /app-config/openvpn-credentials.txt
+fi
+
+openvpn --config $OVPN_FILE
