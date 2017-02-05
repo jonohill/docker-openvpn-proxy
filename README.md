@@ -1,14 +1,19 @@
 # OpenVPN Proxy
 
-Uses Privoxy to proxy requests that hit *8080 to OpenVPN. All running on alpine Linux, so fast and light.
+A Privoxy container with OpenVPN - Built upon Alpine Linux so tiny, fast, light and awesome.
 
-I've set it up to use the provider PIA's UK Servers, but you can add your own, then modify the respective line in `app/ovpn/run`.
-PIA Publish thier configs for download here: https://www.privateinternetaccess.com/openvpn/openvpn.zip
+I've only included the UK PIA ovpn files, because that's all I need. But you can download the others from PIA and inlcude your own (here)[https://www.privateinternetaccess.com/openvpn/openvpn.zip] - Don't forget ot change the paths in the ovpn files!!
 
 ## Setup
 
-1. Add creds file to `app/ovpn/pia-creds.txt` - username on first line, password on 2nd.
-2. Build - `docker build -t ovpn-proxy:latest .`
-3. Run - `docker run -d --device=/dev/net/tun --cap-add=NET_ADMIN -v /etc/localtime:/etc/caltime:ro -p 8080:8080 ovpn-proxy`
+```
+docker run -d --device=/dev/net/tun --cap-add=NET_ADMIN \
+    -e "OPENVPN_FILE_SUBPATH=pia/uk-london.ovpn" \
+    -e "OPENVPN_USERNAME=<USERNAME>" \
+    -e "OPENVPN_PASSWORD=<PASSWORD>" \
+    -v /etc/localtime:/etc/caltime:ro \
+    -p 8080:8080 \
+    andymeful/privoxy-openvpn
+```
 
 Also included a `docker-compose.yml`
