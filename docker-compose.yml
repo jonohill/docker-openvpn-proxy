@@ -13,8 +13,9 @@ services:
       - /etc/localtime:/etc/caltime:ro
     environment:
       - OPENVPN_FILE_SUBPATH=pia/uk-london.ovpn
-      - OPENVPN_USERNAME=<USERNAME>
-      - OPENVPN_PASSWORD=<PASSWORD>
+      - OPENVPN_USERNAME=null
+      - OPENVPN_PASSWORD=null
+      - LOCAL_NETWORK=192.168.1.0/24
     networks:
       - ovpn_proxy
     ports:
