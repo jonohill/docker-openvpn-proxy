@@ -2,7 +2,7 @@
 
 A Privoxy container with OpenVPN - Built upon Alpine Linux so tiny, fast, light and awesome.
 
-I've only included the UK PIA ovpn files, because that's all I need. But you can download the others from PIA and inlcude your own (here)[https://www.privateinternetaccess.com/openvpn/openvpn.zip] - Don't forget ot change the paths in the ovpn files!!
+I've only included the UK PIA ovpn files, because that's all I need. But you can download the others from PIA and inlcude your own [here](https://www.privateinternetaccess.com/openvpn/openvpn.zip) - Don't forget ot change the paths in the ovpn files!!
 
 ## Setup
 
