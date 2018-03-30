@@ -16,8 +16,6 @@ services:
       - OPENVPN_USERNAME=null
       - OPENVPN_PASSWORD=null
       - LOCAL_NETWORK=192.168.1.0/24
-    networks:
-      - ovpn_proxy
     ports:
       - 8080:8080
     restart: always
