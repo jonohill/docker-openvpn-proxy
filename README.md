@@ -28,6 +28,15 @@ docker run -d --device=/dev/net/tun --cap-add=NET_ADMIN \
 Also included a `docker-compose.yml`
 
 ### Environment Variables
-`LOCAL_NETWORK` - The CIDR mask of the local IP addresses which will be acessing the proxy. This is so the response to a request makes it back to the client.  
-`OPENVPN_FILE_SUBPATH` - Currently only 'pia/uk-london.ovpn' or 'pia/uk-southhampton.ovpn' are valid.  
-`OPENVPN_USERNAME` / `OPENVPN_PASSWORD` - Credentials to connect to PIA
+
+#### LOCAL_NETWORK
+The CIDR mask of the local IP addresses which will be acessing the proxy. This is so the response to a request makes it back to the client.
+
+#### OPENVPN_FILE_SUBPATH
+Currently implemented
+ - pia/uk-london.ovpn
+ - pia/uk-manch.ovpn
+ - pia/germany-frankf.ovpn
+
+#### OPENVPN_USERNAME / OPENVPN_PASSWORD
+Credentials to connect to PIA.
