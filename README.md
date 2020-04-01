@@ -17,8 +17,10 @@ Note that special capabilities are required, specifically `NET_ADMIN` and access
 
 ## Tags
 
-It's best to use `latest` if you can. 
-Or you can use a specific version tag - tags are based on the OpenVPN version.
+~~It's best to use `latest` if you can. 
+Or you can use a specific version tag - tags are based on the OpenVPN version.~~
+
+TODO
 
 ### Mounts
 
@@ -86,8 +88,8 @@ Here are the differences from the original:
 - Generic, not focussed on PIA.
 - Split tunneling (i.e. proxy auto-configuration script).
 - Username/password auto-configuration.
-- Automatic builds
 - New configuration
 - New docs
+- ~~Automatic builds~~ TODO
 
 And other minor changes.
