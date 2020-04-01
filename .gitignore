@@ -1,2 +1,3 @@
-app/ovpn/pia-creds.txt
 .DS_Store
+.env
+*.ovpn
