@@ -1,6 +1,4 @@
-confdir /app/privoxy
-
-listen-address  0.0.0.0:8080
+listen-address  0.0.0.0:${OPENVPN_PROXY_PORT}
 
 debug   1    # show each GET/POST/CONNECT request
 debug   4096 # Startup banner and warnings

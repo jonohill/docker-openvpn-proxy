@@ -1,9 +1,19 @@
 #!/bin/sh
+
+if [ -z ${LOCAL_NETWORK} ]; then
+    echo "Please set LOCAL_NETWORK environment variable."
+    exit 1
+fi
+
 sleep 10
+
+export TEMP_DIR="$(mktemp -d)"
+
+envsubst </app/privoxy/config >"${TEMP_DIR}/config"
 
 # so return traffic that went through VPN works
 gw=$(ip route | awk '/default/ {print $3}')
 ip route add to ${LOCAL_NETWORK} via $gw dev eth0
 
 # start
-privoxy --no-daemon
+privoxy --no-daemon "${TEMP_DIR}/config"
