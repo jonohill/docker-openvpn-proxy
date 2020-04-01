@@ -1,16 +1,21 @@
-FROM alpine:edge
+FROM alpine
 
-EXPOSE 8080
-
-RUN apk --update add privoxy openvpn runit
+RUN apk --no-cache add \
+    gettext \
+    nginx \
+    openvpn \ 
+    privoxy \
+    runit
 
 COPY app /app
 
-RUN find /app -name run | xargs chmod u+x
-
-ENV OPENVPN_FILE_SUBPATH=pia/uk-london.ovpn \
-    OPENVPN_USERNAME=null \
-    OPENVPN_PASSWORD=null \
-    LOCAL_NETWORK=192.168.1.0/24
+ENV LOCAL_NETWORK= \
+    OPENVPN_AUTO_CONFIG=true \
+    OPENVPN_CONFIG_FILE=/config/config.ovpn \
+    OPENVPN_HOST=localhost \
+    OPENVPN_PASSWORD= \
+    OPENVPN_PROXY_PORT=8080 \
+    OPENVPN_TUNNEL_HOSTS= \
+    OPENVPN_USERNAME=
 
 CMD ["runsvdir", "/app"]
