@@ -1,21 +1,27 @@
-version: '2'
+version: "3"
+
+# Try `docker-compose up`
+
 services:
-  ovpn_proxy:
-    image: andymeful/privoxy-openvpn
-    cap_add:
-      - NET_ADMIN
-    devices:
-      - /dev/net/tun
-    dns:
-      - 1.1.1.1
-      - 1.0.0.1
-    volumes:
-      - /etc/localtime:/etc/caltime:ro
-    environment:
-      - OPENVPN_FILE_SUBPATH=pia/uk-london.ovpn
-      - OPENVPN_USERNAME=null
-      - OPENVPN_PASSWORD=null
-      - LOCAL_NETWORK=192.168.1.0/24
-    ports:
-      - 8080:8080
-    restart: always
+    ovpn_proxy:
+        build: .
+        cap_add:
+            - NET_ADMIN
+        devices:
+            - /dev/net/tun
+        dns:
+            - 1.1.1.1
+            - 1.0.0.1
+        volumes:
+            - ./config.ovpn:/config/config.ovpn
+        environment: # This needs to change - your local network
+            - LOCAL_NETWORK=10.0.8.1/24
+            # Create a .env file with these values
+            - OPENVPN_USERNAME=${OPENVPN_USERNAME}
+            - OPENVPN_PASSWORD=${OPENVPN_PASSWORD}
+            # Adjust for your needs
+            - OPENVPN_TUNNEL_HOSTS=*.corp.com
+        ports:
+            - 8081:80
+            - 8080:8080
+        restart: always
