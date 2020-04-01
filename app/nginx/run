@@ -1,0 +1,10 @@
+#!/bin/sh
+
+export TEMP_DIR="$(mktemp -d)"
+chown nginx:nginx "${TEMP_DIR}"
+
+envsubst </app/nginx/config >"${TEMP_DIR}/config"
+envsubst </app/nginx/proxy.pac >"${TEMP_DIR}/proxy.pac"
+
+mkdir -p /run/nginx
+nginx -g 'daemon off;' -c "${TEMP_DIR}/config"

@@ -1,0 +1,16 @@
+error_log /dev/stdout info;
+
+events {
+    worker_connections          1024;
+}
+
+http {
+    access_log                  /dev/stdout;
+    default_type                application/javascript;
+    server {
+        listen                  80;
+        root                    ${TEMP_DIR};
+        index                   proxy.pac;
+        rewrite                 ^.*$ /proxy.pac;
+    }
+}
