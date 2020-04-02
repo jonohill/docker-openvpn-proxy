@@ -1,0 +1,31 @@
+name: Docker Image CI
+
+on:
+  push: {}
+  pull_request: {}
+  schedule:
+    - cron: '5 4 * * *'
+
+env:
+  DOCKER_REPO: jonoh/openvpn-proxy
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      run: docker build . --tag ci
+    - name: Release
+      if: github.ref == 'ci'
+      env: 
+        OPENVPN_VERSION_RE: ^.*(\d+\.\d+\.\d+).*$
+      run: |
+        docker tag ci "${DOCKER_REPO}:latest"
+        if [[ "$(docker run --rm --entrypoint openvpn ci --version)" =~ ${OPENVPN_VERSION_RE} ]]; then
+          openvpn_version="${BASH_REMATCH[1]}"
+          docker tag ci "${DOCKER_REPO}:${BASH_REMATCH[1]}"
+        fi
+        docker push "$DOCKER_REPO"
