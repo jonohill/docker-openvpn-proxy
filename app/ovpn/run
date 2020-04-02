@@ -23,4 +23,10 @@ if [ ! -f "${TEMP_DIR}/config.ovpn" ]; then
     cp "${OPENVPN_CONFIG_FILE}" "${TEMP_DIR}/config.ovpn"
 fi
 
-openvpn --config "${TEMP_DIR}/config.ovpn"
+if ! openvpn --config "${TEMP_DIR}/config.ovpn"; then
+    exit_code=$?
+    echo "OpenVPN failed"
+    sleep 5
+    exit $exit_code
+fi
+
