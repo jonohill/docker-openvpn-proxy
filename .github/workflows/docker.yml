@@ -19,13 +19,13 @@ jobs:
     - name: Build
       run: docker build . --tag ci
     - name: Docker Login
-      if: github.ref == 'refs/heads/ci'
+      if: github.ref == 'refs/heads/master'
       uses: Azure/docker-login@v1
       with:
         username: jonoh
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Release
-      if: github.ref == 'refs/heads/ci'
+      if: github.ref == 'refs/heads/master'
       env: 
         OPENVPN_VERSION_RE: ([0-9]\.[0-9]\.[0-9])
       run: |
