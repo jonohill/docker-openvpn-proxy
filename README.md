@@ -17,10 +17,8 @@ Note that special capabilities are required, specifically `NET_ADMIN` and access
 
 ## Tags
 
-~~It's best to use `latest` if you can. 
-Or you can use a specific version tag - tags are based on the OpenVPN version.~~
-
-TODO
+It's best to use `latest` if you can. 
+Or you can use a specific version tag - tags are based on the OpenVPN version.
 
 ### Mounts
 
@@ -90,6 +88,6 @@ Here are the differences from the original:
 - Username/password auto-configuration.
 - New configuration
 - New docs
-- ~~Automatic builds~~ TODO
+- Automatic builds
 
 And other minor changes.
