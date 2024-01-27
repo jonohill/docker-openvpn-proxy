@@ -1,4 +1,4 @@
-FROM alpine:3.14.2
+FROM alpine:3.19.1
 
 RUN apk --no-cache add \
     gettext \
