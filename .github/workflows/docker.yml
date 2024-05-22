@@ -20,7 +20,7 @@ jobs:
       run: docker build . --tag ci
     - name: Docker Login
       if: github.ref == 'refs/heads/master'
-      uses: Azure/docker-login@v1
+      uses: Azure/docker-login@v2
       with:
         username: jonoh
         password: ${{ secrets.DOCKERHUB_TOKEN }}
